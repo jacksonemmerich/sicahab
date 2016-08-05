@@ -21,16 +21,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
+//import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.gov.ro.portovelho.sicahab.model.enuns.CodigoAtualizacao;
+import br.gov.ro.portovelho.sicahab.model.enuns.EstadoCivil;
+import br.gov.ro.portovelho.sicahab.model.enuns.Nacionalidade;
+import br.gov.ro.portovelho.sicahab.model.enuns.Sexo;
 
 /**
  * A Pessoa.
@@ -51,6 +53,7 @@ public class Pessoa implements Serializable {
     @Column(name = "data_cadastro", nullable = false)
     private ZonedDateTime dataCadastro;
 
+    
     @NotNull
     @Enumerated(EnumType.STRING)
     private CodigoAtualizacao codigoAtualizacao;
@@ -73,19 +76,18 @@ public class Pessoa implements Serializable {
     private LocalDate dataNascimento;
 
     @NotNull
-    @Size(max = 1)
-    @Pattern(regexp = "undefined")
-    @Column(name = "sexo", length = 1, nullable = false)
-    private String sexo;
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
 
     @Size(max = 7)
     @Column(name = "naturalidade", length = 7)
     private String naturalidade;
 
     @NotNull
-    @Column(name = "estado_civil", nullable = false)
-    private Integer estadoCivil;
+    @Enumerated(EnumType.STRING)
+    private EstadoCivil estadoCivil;
 
+    //TODO obrigatório se estadoCivil seja 7,8 ou 9.
     @Column(name = "data_casamento")
     private LocalDate dataCasamento;
 
@@ -121,6 +123,10 @@ public class Pessoa implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    private PaisNacionalidade paisNacionalidade;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Nacionalidade nacionalidade;
 
     @OneToOne
@@ -154,6 +160,8 @@ public class Pessoa implements Serializable {
     public void setDataCadastro(ZonedDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
+    
 
     public CodigoAtualizacao getCodigoAtualizacao() {
 		return codigoAtualizacao;
@@ -195,15 +203,16 @@ public class Pessoa implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
+    
+    public Sexo getSexo() {
+		return sexo;
+	}
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
 
-    public String getNaturalidade() {
+	public String getNaturalidade() {
         return naturalidade;
     }
 
@@ -211,13 +220,7 @@ public class Pessoa implements Serializable {
         this.naturalidade = naturalidade;
     }
 
-    public Integer getEstadoCivil() {
-        return estadoCivil;
-    }
-
-    public void setEstadoCivil(Integer estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
+    
 
     public LocalDate getDataCasamento() {
         return dataCasamento;
@@ -283,12 +286,12 @@ public class Pessoa implements Serializable {
         this.telefones = telefones;
     }
 
-    public Nacionalidade getNacionalidade() {
-        return nacionalidade;
+    public PaisNacionalidade getNacionalidade() {
+        return paisNacionalidade;
     }
 
-    public void setNacionalidade(Nacionalidade nacionalidade) {
-        this.nacionalidade = nacionalidade;
+    public void setNacionalidade(PaisNacionalidade nacionalidade) {
+        this.paisNacionalidade = nacionalidade;
     }
 
     public CondicaoSelecao getCondicaoSelecao() {

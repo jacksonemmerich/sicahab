@@ -13,10 +13,10 @@ import java.util.Objects;
  * A Nacionalidade.
  */
 @Entity
-@Table(name = "nacionalidade")
+@Table(name = "pais_nacionalidade")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 //@Document(indexName = "nacionalidade")
-public class Nacionalidade implements Serializable {
+public class PaisNacionalidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -75,7 +75,7 @@ public class Nacionalidade implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Nacionalidade nacionalidade = (Nacionalidade) o;
+        PaisNacionalidade nacionalidade = (PaisNacionalidade) o;
         if(nacionalidade.id == null || id == null) {
             return false;
         }

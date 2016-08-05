@@ -4,6 +4,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import org.springframework.data.elasticsearch.annotations.Document;
 
+import br.gov.ro.portovelho.sicahab.model.enuns.TipoDocumento;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -26,9 +28,8 @@ public class DocumentoIdentificao implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 3)
-    @Column(name = "tipo_documento_identificao", length = 3, nullable = false)
-    private String tipoDocumentoIdentificao;
+    @Enumerated(EnumType.STRING)
+    private TipoDocumento tipoDocumentoIdentificao;
 
     @NotNull
     @Size(max = 15)
@@ -56,16 +57,16 @@ public class DocumentoIdentificao implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+   
+    public TipoDocumento getTipoDocumentoIdentificao() {
+		return tipoDocumentoIdentificao;
+	}
 
-    public String getTipoDocumentoIdentificao() {
-        return tipoDocumentoIdentificao;
-    }
+	public void setTipoDocumentoIdentificao(TipoDocumento tipoDocumentoIdentificao) {
+		this.tipoDocumentoIdentificao = tipoDocumentoIdentificao;
+	}
 
-    public void setTipoDocumentoIdentificao(String tipoDocumentoIdentificao) {
-        this.tipoDocumentoIdentificao = tipoDocumentoIdentificao;
-    }
-
-    public String getNumero() {
+	public String getNumero() {
         return numero;
     }
 

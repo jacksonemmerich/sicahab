@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-import br.gov.ro.portovelho.sicahab.model.enuns.TipoCelular;;;
+import br.gov.ro.portovelho.sicahab.model.enuns.TipoTelefone;;;
 
 /**
  * A Telefone.
@@ -26,21 +26,24 @@ public class Telefone implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     @Size(max = 3)
-    @Column(name = "ddd", length = 3)
+    @Column(name = "ddd", length = 3, nullable=false)
     private String ddd;
 
+    @NotNull
     @Size(max = 9)
-    @Column(name = "numero", length = 9)
+    @Column(name = "numero", length = 9, nullable=false)
     private String numero;
 
     @Size(max = 4)
     @Column(name = "ramal", length = 4)
     private String ramal;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_celular")
-    private TipoCelular tipoCelular;
+    @Column(name = "tipo_telefone", nullable=false)
+    private TipoTelefone tipoTelefone;
 
     @ManyToOne
     private Pessoa pessoa;
@@ -77,12 +80,12 @@ public class Telefone implements Serializable {
         this.ramal = ramal;
     }
 
-    public TipoCelular getTipoCelular() {
-        return tipoCelular;
+    public TipoTelefone getTipoTelefone() {
+        return tipoTelefone;
     }
 
-    public void setTipoCelular(TipoCelular tipoCelular) {
-        this.tipoCelular = tipoCelular;
+    public void setTipoTelefone(TipoTelefone tipoTelefone) {
+        this.tipoTelefone = tipoTelefone;
     }
 
     public Pessoa getPessoa() {
@@ -120,7 +123,7 @@ public class Telefone implements Serializable {
             ", ddd='" + ddd + "'" +
             ", numero='" + numero + "'" +
             ", ramal='" + ramal + "'" +
-            ", tipoCelular='" + tipoCelular + "'" +
+            ", tipoTelefone='" + tipoTelefone + "'" +
             '}';
     }
 }

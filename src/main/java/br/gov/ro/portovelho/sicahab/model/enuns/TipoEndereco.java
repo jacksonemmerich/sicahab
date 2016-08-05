@@ -3,17 +3,17 @@ package br.gov.ro.portovelho.sicahab.model.enuns;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Sexo {
-	MASCULINO(1,"Masculino"),
-	FEMININO(2, "Feminino");
+public enum TipoEndereco {
+	RESIDENCIAL(1,"Residencial"),
+	TRABALHO(2,"Trabalho");
 	
-	private final Integer dbValue;
+private final Integer dbValue;
 	
 	private final String descricao;
 	
 	
 	
-	 private Sexo(Integer dbValue,String descricao){
+	 private TipoEndereco(Integer dbValue,String descricao){
 		 this.dbValue = dbValue;
 		 this.descricao = descricao;
 	 }
@@ -26,26 +26,18 @@ public enum Sexo {
 	public String getDescricao() {
 		return descricao;
 	}
-
-
-
-	public static final Map<Integer, Sexo> dbValues = new HashMap<>();
+	
+	
+public static final Map<Integer, TipoEndereco> dbValues = new HashMap<>();
 	
 	static {
-        for (Sexo value : values()) {
+        for (TipoEndereco value : values()) {
             dbValues.put(value.dbValue, value);
         }
     }
  
-    public static Sexo fromDbValue(Integer dbValue) {
+    public static TipoEndereco fromDbValue(Integer dbValue) {
         // this returns null for invalid value, check for null and throw exception if you need it
         return dbValues.get(dbValue);
     }
-	
-	
-	
-	
-	
-	
-	
 }
