@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.gov.ro.portovelho.sicahab.repository.VinhosRepository;
+import br.gov.ro.portovelho.sicahab.repository.PessoaRepository;
 
 @Controller
 @RequestMapping("/vinhos")
 public class PessoaController {
 	
 	@Autowired
-	private VinhosRepository vinhos;
+	private PessoaRepository vinhos;
 	
 	@RequestMapping
 	public ModelAndView pesquisa() {

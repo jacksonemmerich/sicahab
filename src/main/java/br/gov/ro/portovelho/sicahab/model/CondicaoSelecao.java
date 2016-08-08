@@ -1,6 +1,10 @@
 package br.gov.ro.portovelho.sicahab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.gov.ro.portovelho.sicahab.model.enuns.BeneficioSocial;
+import br.gov.ro.portovelho.sicahab.model.enuns.TipoDeficiencia;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import org.springframework.data.elasticsearch.annotations.Document;
@@ -33,14 +37,13 @@ public class CondicaoSelecao implements Serializable {
     private Boolean opcaoEmpreendimento;
 
     @Size(max = 9)
-    @Pattern(regexp = "undefined")
+    @Pattern(regexp = "^{9}[0-9]$")
     @Column(name = "apf_empreendimento", length = 9)
     private String apfEmpreendimento;
 
     @NotNull
-    @Size(max = 1)
-    @Column(name = "tipo_deficiencia", length = 1, nullable = false)
-    private String tipoDeficiencia;
+    @Enumerated(EnumType.STRING)
+    private TipoDeficiencia tipoDeficiencia;
 
     @Column(name = "doenca_cronica_incapacitante")
     private Boolean doencaCronicaIncapacitante;
@@ -48,8 +51,8 @@ public class CondicaoSelecao implements Serializable {
     @Column(name = "data_inicio_residencia_municipio")
     private LocalDate dataInicioResidenciaMunicipio;
 
-    @Column(name = "beneficio_social")
-    private Boolean beneficioSocial;
+    @Enumerated(EnumType.STRING)
+    private BeneficioSocial beneficioSocial;
 
     @Column(name = "situacao_rua_com_acompanhamento")
     private Boolean situacaoRuaComAcompanhamento;
@@ -83,6 +86,8 @@ public class CondicaoSelecao implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
 
     public Boolean isResideAreaRiscoInsalubre() {
         return resideAreaRiscoInsalubre;
@@ -107,16 +112,19 @@ public class CondicaoSelecao implements Serializable {
     public void setApfEmpreendimento(String apfEmpreendimento) {
         this.apfEmpreendimento = apfEmpreendimento;
     }
+    
+    
+    
 
-    public String getTipoDeficiencia() {
-        return tipoDeficiencia;
-    }
+    public TipoDeficiencia getTipoDeficiencia() {
+		return tipoDeficiencia;
+	}
 
-    public void setTipoDeficiencia(String tipoDeficiencia) {
-        this.tipoDeficiencia = tipoDeficiencia;
-    }
+	public void setTipoDeficiencia(TipoDeficiencia tipoDeficiencia) {
+		this.tipoDeficiencia = tipoDeficiencia;
+	}
 
-    public Boolean isDoencaCronicaIncapacitante() {
+	public Boolean isDoencaCronicaIncapacitante() {
         return doencaCronicaIncapacitante;
     }
 
@@ -132,15 +140,49 @@ public class CondicaoSelecao implements Serializable {
         this.dataInicioResidenciaMunicipio = dataInicioResidenciaMunicipio;
     }
 
-    public Boolean isBeneficioSocial() {
-        return beneficioSocial;
-    }
+    
 
-    public void setBeneficioSocial(Boolean beneficioSocial) {
-        this.beneficioSocial = beneficioSocial;
-    }
+    public BeneficioSocial getBeneficioSocial() {
+		return beneficioSocial;
+	}
 
-    public Boolean isSituacaoRuaComAcompanhamento() {
+	public void setBeneficioSocial(BeneficioSocial beneficioSocial) {
+		this.beneficioSocial = beneficioSocial;
+	}
+
+	public Boolean getResideAreaRiscoInsalubre() {
+		return resideAreaRiscoInsalubre;
+	}
+
+	public Boolean getOpcaoEmpreendimento() {
+		return opcaoEmpreendimento;
+	}
+
+	public Boolean getDoencaCronicaIncapacitante() {
+		return doencaCronicaIncapacitante;
+	}
+
+	public Boolean getSituacaoRuaComAcompanhamento() {
+		return situacaoRuaComAcompanhamento;
+	}
+
+	public Boolean getResidenciaAlugada() {
+		return residenciaAlugada;
+	}
+
+	public Boolean getRecebeAluguelSocial() {
+		return recebeAluguelSocial;
+	}
+
+	public Boolean getAtendidaMariaDaPenha() {
+		return atendidaMariaDaPenha;
+	}
+
+	public Boolean getSituacaoCoabitacionalInvoluntaria() {
+		return situacaoCoabitacionalInvoluntaria;
+	}
+
+	public Boolean isSituacaoRuaComAcompanhamento() {
         return situacaoRuaComAcompanhamento;
     }
 

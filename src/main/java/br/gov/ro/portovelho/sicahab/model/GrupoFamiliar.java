@@ -53,14 +53,8 @@ public class GrupoFamiliar implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Pessoa pessoa;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
+    
 
     public String getCodigoAtualizacao() {
         return codigoAtualizacao;
@@ -72,6 +66,12 @@ public class GrupoFamiliar implements Serializable {
 
     public String getMotivoExclusao() {
         return motivoExclusao;
+    }public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setMotivoExclusao(String motivoExclusao) {

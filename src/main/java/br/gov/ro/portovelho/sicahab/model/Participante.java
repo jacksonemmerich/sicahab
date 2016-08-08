@@ -4,6 +4,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 //import org.springframework.data.elasticsearch.annotations.Document;
 
+import br.gov.ro.portovelho.sicahab.model.enuns.PapelParticipante;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -31,9 +33,8 @@ public class Participante implements Serializable {
     private String nisParticipante;
 
     @NotNull
-    @Size(min = 1, max = 2)
-    @Column(name = "papel_participante", length = 2, nullable = false)
-    private String papelParticipante;
+    @Enumerated(EnumType.STRING)
+    private PapelParticipante papelParticipante;
 
     @ManyToOne
     private GrupoFamiliar grupoFamiliar;
@@ -41,10 +42,11 @@ public class Participante implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
+
+    
 
     public String getNisParticipante() {
         return nisParticipante;
@@ -54,15 +56,15 @@ public class Participante implements Serializable {
         this.nisParticipante = nisParticipante;
     }
 
-    public String getPapelParticipante() {
-        return papelParticipante;
-    }
+    
 
-    public void setPapelParticipante(String papelParticipante) {
-        this.papelParticipante = papelParticipante;
-    }
-
-    public GrupoFamiliar getGrupoFamiliar() {
+    public PapelParticipante getPapelParticipante() {
+		return papelParticipante;
+	}
+	public void setPapelParticipante(PapelParticipante papelParticipante) {
+		this.papelParticipante = papelParticipante;
+	}
+	public GrupoFamiliar getGrupoFamiliar() {
         return grupoFamiliar;
     }
 
